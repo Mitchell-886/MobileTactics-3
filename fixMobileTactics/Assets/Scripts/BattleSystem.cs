@@ -27,6 +27,7 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
 		state = BattleState.START;
 		StartCoroutine(SetupBattle());
     }

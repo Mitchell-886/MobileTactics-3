@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Braxton
-  unitLevel: 1
-  damage: 5
-  maxHP: 15
-  currentHP: 15
+  unitLevel: 5
+  damage: 10
+  maxHP: 40
+  currentHP: 40
