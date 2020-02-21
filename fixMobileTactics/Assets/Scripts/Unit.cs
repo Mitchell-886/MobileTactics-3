@@ -13,7 +13,12 @@ public class Unit : MonoBehaviour
 	public int maxHP;
 	public int currentHP;
 
-	public bool TakeDamage(int dmg)
+    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
+
+    public GameObject battleSystem;
+
+    public bool TakeDamage(int dmg)
 	{
 		currentHP -= dmg;
 
@@ -30,4 +35,15 @@ public class Unit : MonoBehaviour
 			currentHP = maxHP;
 	}
 
+    private void OnCollision2D(Collider2D collision)
+    {
+        if (gameObject.tag == "Player" && collision.gameObject.tag == "Enemy")
+        {
+            battleSystem.GameObject.SetActive(true);
+        }
+        if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player")
+        {
+            battleSystem.GameObject.SetActive(true);
+        }
+    }
 }

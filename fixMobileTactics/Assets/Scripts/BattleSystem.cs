@@ -7,11 +7,10 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
 
 public class BattleSystem : MonoBehaviour
 {
+    public GameObject battleSystem;
 
-	public GameObject playerPrefab;
-	public GameObject enemyPrefab;
 
-	public Transform playerBattleStation;
+    public Transform playerBattleStation;
 	public Transform enemyBattleStation;
 
 	Unit playerUnit;
@@ -34,10 +33,10 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator SetupBattle()
 	{
-		GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+		GameObject playerGO = Instantiate(playerUnit.playerPrefab, playerBattleStation);
 		playerUnit = playerGO.GetComponent<Unit>();
 
-		GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+		GameObject enemyGO = Instantiate(enemyUnit.enemyPrefab, enemyBattleStation);
 		enemyUnit = enemyGO.GetComponent<Unit>();
 
 		dialogueText.text = "Incoming " + enemyUnit.unitName + " Get ready for attack...";
@@ -100,10 +99,12 @@ public class BattleSystem : MonoBehaviour
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
-		} else if (state == BattleState.LOST)
+            battleSystem.GameObject.SetActive(false);
+        } else if (state == BattleState.LOST)
 		{
 			dialogueText.text = "You were defeated.";
-		}
+            battleSystem.GameObject.SetActive(false);
+        }
 	}
 
 	void PlayerTurn()
