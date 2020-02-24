@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class Unit : MonoBehaviour
     public GameObject enemyPrefab;
 
     public GameObject battleSystem;
+
+    void Start()
+    {
+        battleSystem.gameObject.SetActive(false);
+    }
 
     public bool TakeDamage(int dmg)
 	{
@@ -35,15 +41,12 @@ public class Unit : MonoBehaviour
 			currentHP = maxHP;
 	}
 
-    private void OnCollision2D(Collider2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (gameObject.tag == "Player" && collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
-            battleSystem.GameObject.SetActive(true);
-        }
-        if (gameObject.tag == "Enemy" && collision.gameObject.tag == "Player")
-        {
-            battleSystem.GameObject.SetActive(true);
+            battleSystem.gameObject.SetActive(true);
+            Debug.Log("combat");
         }
     }
 }

@@ -15017,7 +15017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &493320382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15140,7 +15140,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2.4100037, y: 0}
   m_SizeDelta: {x: 5.1700134, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23663,7 +23663,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -2.4100037, y: 0}
   m_SizeDelta: {x: 5.1700134, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23916,7 +23916,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1613945741}
   m_Layer: 0
-  m_Name: Spawn enemy
+  m_Name: enemyBattleStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24014,6 +24014,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LanceFighter_0
       objectReference: {fileID: 0}
+    - target: {fileID: 1793312306358244484, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1793312306358244485, guid: 9d76538498aec5a42bb26ebe5fa342e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24078,6 +24083,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: unitName
+      value: L. Fighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: unitLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: maxHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: currentHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 1793312306358244484, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: battleSystem
+      value: 
+      objectReference: {fileID: 493320381}
+    - target: {fileID: 5333075987986308953, guid: 9d76538498aec5a42bb26ebe5fa342e7,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d76538498aec5a42bb26ebe5fa342e7, type: 3}
@@ -24351,12 +24397,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88df836894e3e8a4f99f4e127933f2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleSystem: {fileID: 493320381}
   playerBattleStation: {fileID: 1911292930}
   enemyBattleStation: {fileID: 1613945741}
   dialogueText: {fileID: 773468416}
   playerHUD: {fileID: 59428365}
   enemyHUD: {fileID: 1131972639}
   state: 0
+--- !u!1 &1798106588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 404424821941805531, guid: c0dd681560264234eb07d0818a532870,
+    type: 3}
+  m_PrefabInstance: {fileID: 404424821514538657}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1798106593
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1798106588}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1887754884
 GameObject:
   m_ObjectHideFlags: 0
@@ -24497,7 +24571,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911292930}
   m_Layer: 0
-  m_Name: Spawn player
+  m_Name: playerBattleStation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24770,15 +24844,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: TopDownKnight_0
       objectReference: {fileID: 0}
+    - target: {fileID: 404424821941805531, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 404424821941805533, guid: c0dd681560264234eb07d0818a532870,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.492
+      value: 2.908
       objectReference: {fileID: 0}
     - target: {fileID: 404424821941805533, guid: c0dd681560264234eb07d0818a532870,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.511
+      value: 2.126
       objectReference: {fileID: 0}
     - target: {fileID: 404424821941805533, guid: c0dd681560264234eb07d0818a532870,
         type: 3}
@@ -24834,6 +24913,47 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: unitName
+      value: Braxton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: unitLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: damage
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: maxHP
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: currentHP
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 404424821941805531, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: battleSystem
+      value: 
+      objectReference: {fileID: 493320381}
+    - target: {fileID: 3166641624396855981, guid: c0dd681560264234eb07d0818a532870,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0dd681560264234eb07d0818a532870, type: 3}

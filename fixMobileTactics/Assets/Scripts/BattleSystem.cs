@@ -29,16 +29,18 @@ public class BattleSystem : MonoBehaviour
 
 		state = BattleState.START;
 		StartCoroutine(SetupBattle());
+        battleSystem.gameObject.SetActive(true);
     }
 
 	IEnumerator SetupBattle()
 	{
+        
 		GameObject playerGO = Instantiate(playerUnit.playerPrefab, playerBattleStation);
 		playerUnit = playerGO.GetComponent<Unit>();
 
 		GameObject enemyGO = Instantiate(enemyUnit.enemyPrefab, enemyBattleStation);
 		enemyUnit = enemyGO.GetComponent<Unit>();
-
+        Debug.Log("IsThisThingOn");
 		dialogueText.text = "Incoming " + enemyUnit.unitName + " Get ready for attack...";
 
 		playerHUD.SetHUD(playerUnit);
@@ -99,11 +101,11 @@ public class BattleSystem : MonoBehaviour
 		if(state == BattleState.WON)
 		{
 			dialogueText.text = "You won the battle!";
-            battleSystem.GameObject.SetActive(false);
+            battleSystem.gameObject.SetActive(false);
         } else if (state == BattleState.LOST)
 		{
 			dialogueText.text = "You were defeated.";
-            battleSystem.GameObject.SetActive(false);
+            battleSystem.gameObject.SetActive(false);
         }
 	}
 
