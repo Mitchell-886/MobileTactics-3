@@ -100,8 +100,7 @@ MonoBehaviour:
   damage: 10
   maxHP: 25
   currentHP: 25
-  playerPrefab: {fileID: 0}
-  enemyPrefab: {fileID: 1793312306358244484}
+  battleSystem: {fileID: 0}
 --- !u!61 &3604741704562128885
 BoxCollider2D:
   m_ObjectHideFlags: 0

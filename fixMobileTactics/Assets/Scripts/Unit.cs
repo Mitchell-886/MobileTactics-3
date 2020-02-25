@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
 
-	public string unitName;
-	public int unitLevel;
+	static public string unitName;
+	static public int unitLevel;
 
-	public int damage;
+	static public int damage;
 
-	public int maxHP;
-	public int currentHP;
+	static public int maxHP;
+	static public int currentHP;
 
     public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    
 
     public GameObject battleSystem;
 
@@ -45,6 +45,7 @@ public class Unit : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            BattleSystem.Enemy = collision.gameObject;
             battleSystem.gameObject.SetActive(true);
             Debug.Log("combat");
         }

@@ -9,13 +9,15 @@ public class BattleSystem : MonoBehaviour
 {
     public GameObject battleSystem;
 
+    static public GameObject Enemy;
+    public GameObject Player;
 
     public Transform playerBattleStation;
 	public Transform enemyBattleStation;
 
 	Unit playerUnit;
 	Unit enemyUnit;
-
+    
 	public Text dialogueText;
 
 	public BattleHUD playerHUD;
@@ -32,16 +34,29 @@ public class BattleSystem : MonoBehaviour
         battleSystem.gameObject.SetActive(true);
     }
 
+    void Update()
+    {
+        
+        if(playerUnit == null)
+        {
+            GameObject playerUnit = GameObject.FindGameObjectWithTag("Player");
+        }
+        if(enemyUnit == null)
+        {
+            GameObject enemyUnit = GameObject.FindGameObjectWithTag("LFighter");
+        }
+    }
+
 	IEnumerator SetupBattle()
 	{
         
-		GameObject playerGO = Instantiate(playerUnit.playerPrefab, playerBattleStation);
+		GameObject playerGO = Instantiate(playerUnit.GetComponent<Unit>().playerPrefab, playerBattleStation);
 		playerUnit = playerGO.GetComponent<Unit>();
 
-		GameObject enemyGO = Instantiate(enemyUnit.enemyPrefab, enemyBattleStation);
+		GameObject enemyGO = Instantiate(enemyUnit.GetComponent<EnemyUnit>().enemyPrefab, enemyBattleStation);
 		enemyUnit = enemyGO.GetComponent<Unit>();
         Debug.Log("IsThisThingOn");
-		dialogueText.text = "Incoming " + enemyUnit.unitName + " Get ready for attack...";
+		dialogueText.text = "Incoming " + Enemy.GetComponent<EnemyUnit>().unitName + " Get ready for attack...";
 
 		playerHUD.SetHUD(playerUnit);
 		enemyHUD.SetHUD(enemyUnit);
@@ -54,9 +69,9 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator PlayerAttack()
 	{
-		bool isDead = enemyUnit.TakeDamage(playerUnit.damage);
+		bool isDead = Enemy.GetComponent<EnemyUnit>().TakeDamage(Unit.damage);
 
-		enemyHUD.SetHP(enemyUnit.currentHP);
+		enemyHUD.SetHP(EnemyUnit.currentHP);
 		dialogueText.text = "The attack is successful!";
 
 		yield return new WaitForSeconds(2f);
@@ -74,13 +89,13 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator EnemyTurn()
 	{
-		dialogueText.text = enemyUnit.unitName + " attacks!";
+		dialogueText.text = Enemy.GetComponent<EnemyUnit>().unitName + " attacks!";
 
 		yield return new WaitForSeconds(1f);
 
-		bool isDead = playerUnit.TakeDamage(enemyUnit.damage);
+		bool isDead = playerUnit.GetComponent<Unit>().TakeDamage(EnemyUnit.damage);
 
-		playerHUD.SetHP(playerUnit.currentHP);
+		playerHUD.SetHP(Unit.currentHP);
 
 		yield return new WaitForSeconds(1f);
 
@@ -116,9 +131,9 @@ public class BattleSystem : MonoBehaviour
 
 	IEnumerator PlayerHeal()
 	{
-		playerUnit.Heal(5);
+		playerUnit.GetComponent<Unit>().Heal(5);
 
-		playerHUD.SetHP(playerUnit.currentHP);
+		playerHUD.SetHP(Unit.currentHP);
 		dialogueText.text = "You feel renewed strength!";
 
 		yield return new WaitForSeconds(2f);
